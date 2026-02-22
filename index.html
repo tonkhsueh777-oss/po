@@ -37,6 +37,7 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
+        img { max-width: 100%; height: auto; display: block; }
 
         .container {
             max-width: 1100px;
@@ -48,7 +49,7 @@
         header {
             background-color: var(--bg-color);
             border-bottom: 2px solid var(--primary-color);
-            padding: 20px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -62,17 +63,29 @@
         }
 
         .nav-links { display: flex; gap: 30px; }
-        .logo-area img { height: 80px; } /* 請替換為你的大叔 Logo */
+        
+        /* Logo 圖片設定 */
+        .logo-img { 
+            height: 80px; /* 設定 Logo 高度 */
+            width: auto;
+        }
 
-        /* --- Banner 區塊 --- */
-        .hero {
-            padding: 80px 0;
+        /* --- 主視覺橫幅 (Banner Image) --- */
+        .banner-full-width img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* --- Hero 文字區塊 --- */
+        .hero-text-section {
+            padding: 60px 0;
             text-align: center;
             border-bottom: 1px solid rgba(61, 43, 31, 0.2);
         }
 
-        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; color: var(--accent-color); font-weight: 500; }
+        .hero-text-section h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero-text-section p { font-size: 1.2rem; color: var(--accent-color); font-weight: 500; }
 
         .shop-now-btn {
             display: inline-block;
@@ -88,20 +101,13 @@
 
         /* --- 品牌故事 (About) --- */
         .section-padding { padding: 80px 0; }
-        .about-flex {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-image { flex: 1; min-width: 300px; }
-        .about-image img { 
-            width: 100%; 
-            border: 1px solid var(--primary-color);
-            padding: 10px;
-            background: white;
-        }
+        .about-container h2 { margin-bottom: 30px; }
+        .about-container p { margin-bottom: 20px; text-align: left; }
 
         /* --- 產品系列 (Products) --- */
         .category-header {
@@ -112,6 +118,7 @@
             font-weight: bold;
             margin-bottom: 40px;
             border-radius: 2px;
+            border: 2px solid var(--primary-color);
         }
 
         .product-grid {
@@ -122,14 +129,17 @@
 
         .product-card {
             background: var(--white);
-            border: 1px solid #ddd;
+            border: 2px solid var(--primary-color);
             padding: 20px;
             text-align: center;
             transition: 0.3s;
         }
 
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: auto; margin-bottom: 15px; }
+        .product-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 8px 8px 0px var(--accent-color); /* 復古陰影效果 */
+        }
+        .product-card img { width: 100%; height: auto; margin-bottom: 15px; border: 1px solid #eee; }
         .product-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
         .product-card ul { 
             text-align: left; 
@@ -139,7 +149,8 @@
             border-top: 1px solid #eee;
             padding-top: 10px;
         }
-        .product-card li::before { content: "• "; color: var(--accent-color); }
+        .product-card li { margin-bottom: 5px; }
+        .product-card li::before { content: "• "; color: var(--accent-color); font-weight: bold; }
 
         /* --- 聯絡我們 (Contact) --- */
         .contact-grid {
@@ -152,7 +163,7 @@
         .info-box {
             border: 2px solid var(--primary-color);
             padding: 30px;
-            background: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.5);
         }
 
         .info-box h3 {
@@ -166,12 +177,14 @@
         .map-placeholder {
             width: 100%;
             height: 200px;
-            background: #ddd;
+            background: #ddd url('images/map-static.png') center/cover; /* 預留地圖背景 */
             display: flex;
             align-items: center;
             justify-content: center;
             margin-top: 15px;
-            border: 1px solid #bbb;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
         /* --- 頁尾 --- */
@@ -181,16 +194,17 @@
             padding: 50px 0;
             text-align: center;
             margin-top: 80px;
+            border-top: 5px solid var(--accent-color);
         }
 
-        .footer-logo { color: var(--white); font-size: 1.5rem; margin-bottom: 20px; display: block; }
-        .social-icons a { font-size: 1.5rem; margin: 0 10px; color: var(--white); }
-
+        .footer-logo-text { color: var(--white); font-size: 1.5rem; margin-bottom: 10px; display: block; font-family: 'Noto Serif TC', serif; font-weight: bold;}
+        
         /* 響應式調整 */
         @media (max-width: 768px) {
             nav { flex-direction: column; gap: 20px; }
             .nav-links { gap: 15px; font-size: 0.9rem; }
-            .hero h1 { font-size: 2rem; }
+            .logo-img { height: 60px; }
+            .hero-text-section h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -204,7 +218,7 @@
                     <a href="#products">咖啡產品</a>
                 </div>
                 <div class="logo-area">
-                    <h2 style="letter-spacing: 2px;">AMEKAJI</h2>
+                    <img src="images/logo.png" alt="AMEKAJI WORKSHOP Logo" class="logo-img">
                 </div>
                 <div class="nav-links">
                     <a href="#products">配件系列</a>
@@ -214,21 +228,22 @@
         </div>
     </header>
 
-    <section class="hero container">
+    <div class="banner-full-width">
+        <img src="images/hero-banner.jpg" alt="AMEKAJI Workshop 工藝情境">
+    </div>
+
+    <section class="hero-text-section container">
         <h1>致敬那些經得起時間考驗的事物</h1>
         <p>我們相信，「舊」比「新」更有味道。</p>
         <a href="#products" class="shop-now-btn">SHOP NOW 立即選購</a>
     </section>
 
     <section id="about" class="section-padding container">
-        <div class="about-flex">
-            <div class="about-text">
-                <h2>品牌介紹：OUR STORY</h2>
-                <p>AMEKAJI WORKSHOP 成立於 2024 年，靈感源自對工藝、耐用性和永恆品質的追求。我們將這種精神注入我們的咖啡中。從精心挑選的咖啡豆到傳統的烘焙工藝，每一杯都講述一個關於熱情和傳統的故事。我們專注於咖啡的藝術，為您帶來經得起時間考驗的味道。</p>
-            </div>
-            <div class="about-image">
-                <img src="https://via.placeholder.com/500x400" alt="工藝精神">
-            </div>
+        <div class="about-container">
+            <h2>品牌介紹：OUR STORY</h2>
+            <p>在這個快時尚氾濫的年代，AMEKAJI WORKSHOP 選擇走一條慢路。我們著迷於植鞣皮革隨時間呈現的深邃、蠟帆布磨損後的獨特紋理，以及一杯手沖咖啡在清晨帶來的純粹。</p>
+            <p>我們相信，真正好的物品，不應該在拆封那一刻最美，而是在與你並肩作戰數年後，長出屬於你的樣子。這裡提供的每一顆豆子、每一件皮件，都是為了陪伴你走過漫長旅程而生。</p>
+            <p style="text-align: center; font-weight: bold; color: var(--primary-color); margin-top: 30px;">工藝 · 耐用 · 永恆 —— 這就是我們的承諾。</p>
         </div>
     </section>
 
@@ -239,39 +254,42 @@
 
         <div class="product-grid">
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x300" alt="工坊拼配咖啡豆">
+                <img src="images/prod-coffee-bean.jpg" alt="工坊拼配咖啡豆">
                 <h3>工坊拼配咖啡豆</h3>
-                <p>我們的標誌性拼配，深度烘焙，帶有堅果、巧克力和焦糖的風味。</p>
+                <p>我們的標誌性拼配，深度烘焙，帶有堅果、巧克力和煙燻的硬派風味。</p>
                 <ul>
                     <li>深度烘焙 (Dark Roast)</li>
-                    <li>堅果、巧克力風味</li>
-                    <li>精選產地 / 250g 包裝</li>
+                    <li>風味：黑巧克力、烤堅果、焦糖</li>
+                    <li>規格：250g / 牛皮紙袋裝</li>
                 </ul>
-                <a href="#" class="shop-now-btn" style="padding: 8px 20px;">查看詳情</a>
+                <div style="color: var(--primary-color); font-weight: bold; margin: 15px 0; font-size: 1.2rem;">¥ 98 RMB</div>
+                <a href="#" class="shop-now-btn" style="padding: 8px 20px; width: 100%;">查看詳情</a>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x300" alt="公路旅行掛耳包">
+                <img src="images/prod-drip-bag.jpg" alt="公路旅行掛耳包">
                 <h3>公路旅行掛耳包組</h3>
-                <p>方便的旅行掛耳咖啡組，隨時隨地享受美味咖啡。包含多種風味。</p>
+                <p>方便的旅行掛耳咖啡組，隨時隨地享受美味。露營、公路旅行必備。</p>
                 <ul>
-                    <li>便攜掛耳包</li>
-                    <li>多種風味隨機</li>
-                    <li>耐用帆布袋裝</li>
+                    <li>規格：10g x 10包入</li>
+                    <li>便攜牛皮紙盒裝</li>
+                    <li>充氮保鮮，隨時開沖</li>
                 </ul>
-                <a href="#" class="shop-now-btn" style="padding: 8px 20px;">查看詳情</a>
+                <div style="color: var(--primary-color); font-weight: bold; margin: 15px 0; font-size: 1.2rem;">¥ 88 RMB</div>
+                <a href="#" class="shop-now-btn" style="padding: 8px 20px; width: 100%;">查看詳情</a>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x300" alt="養牛杯套">
-                <h3>養牛杯套</h3>
-                <p>手工皮革杯套，隨著時間使用會呈現獨特的古銅色澤，提供絕佳隔熱。</p>
+                <img src="images/prod-cup-sleeve.jpg" alt="養牛杯套">
+                <h3>植鞣革養牛杯套</h3>
+                <p>手工皮革杯套，隨著時間使用會呈現獨特的古銅色澤，紀錄你的咖啡時光。</p>
                 <ul>
-                    <li>頂級手工皮革</li>
-                    <li>獨特養色過程</li>
-                    <li>經典壓印 Logo</li>
+                    <li>材質：義大利進口植鞣牛革</li>
+                    <li>工藝：手工縫線、邊緣打磨</li>
+                    <li>適用：市售大部分中杯/大杯紙杯</li>
                 </ul>
-                <a href="#" class="shop-now-btn" style="padding: 8px 20px;">查看詳情</a>
+                <div style="color: var(--primary-color); font-weight: bold; margin: 15px 0; font-size: 1.2rem;">¥ 128 RMB</div>
+                <a href="#" class="shop-now-btn" style="padding: 8px 20px; width: 100%;">查看詳情</a>
             </div>
         </div>
     </section>
@@ -282,14 +300,14 @@
         <div class="contact-grid">
             <div class="info-box">
                 <h3>聯絡方式</h3>
-                <p><strong>電話：</strong>070-895-8388</p>
-                <p><strong>Email：</strong>info@amekajiworkshop.com</p>
-                <p>歡迎來電或來店參觀，感受手作溫度。</p>
+                <p><strong>微信 WeChat：</strong>AmekajiWorkshop</p>
+                <p><strong>Email：</strong>info@amekaji.cn</p>
+                <p>歡迎預約工作室參觀，感受手作溫度。</p>
             </div>
 
             <div class="info-box">
-                <h3>店舖地址</h3>
-                <p>台北市信義區松仁路123號</p>
+                <h3>工作室地址</h3>
+                <p>上海市靜安區某某路123號 (範例地址)</p>
                 <div class="map-placeholder">
                     <span>【 地圖位置預留區 】</span>
                 </div>
@@ -298,22 +316,20 @@
             <div class="info-box">
                 <h3>追蹤我們</h3>
                 <p>獲取最新產品與工藝日誌</p>
-                <div style="margin-top: 20px; font-size: 1.2rem;">
-                    FB / IG / TIKTOK / LINE
-                </div>
+                <ul style="margin-top: 20px; font-weight: bold; color: var(--primary-color);">
+                    <li style="margin-bottom: 10px;">小紅書：AMEKAJI WORKSHOP</li>
+                    <li>抖音：阿美咔嘰工坊</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <span class="footer-logo">AMEKAJI WORKSHOP</span>
+            <span class="footer-logo-text">AMEKAJI WORKSHOP</span>
             <p>工藝 · 耐用 · 永恆</p>
-            <div class="social-icons">
-                <span>●</span> <span>●</span> <span>●</span> <span>●</span>
-            </div>
             <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6;">
-                © 2024 AMEKAJI WORKSHOP. All rights reserved. 版權所有。
+                © 2024 AMEKAJI WORKSHOP. All rights reserved.
             </p>
         </div>
     </footer>
